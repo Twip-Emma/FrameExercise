@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--内部bean测试-->
+    <bean id="emp" class="bean.Emp">
+        <property name="empName" value="张三"></property>
+        <property name="gender" value="男"></property>
+        <property name="dept">
+            <bean id="dept" class="bean.Dept">
+                <property name="deptName" value="安保部"></property>
+            </bean>
+        </property>
+    </bean>
+<!--级联bean测试-->
+    <bean id="emp2" class="bean.Emp">
+        <property name="empName" value="李四"></property>
+        <property name="gender" value="男"></property>
+        <property name="dept" ref="dept2"></property>
+    </bean>
+    <bean id="dept2" class="bean.Dept">
+        <property name="deptName" value="后勤部"></property>
+    </bean>
+</beans>
