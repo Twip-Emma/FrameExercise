@@ -99,5 +99,19 @@ public class Main {
         System.out.println(cv);
     }
 
+    @Test
+    public void test11(){
+        //单（多）例Bean测试
+        Book cv1 = context6.getBean("book",Book.class);
+        Book cv2 = context6.getBean("book",Book.class);
+        System.out.println(cv1);
+        System.out.println(cv2);
+    }
 
+    @Test
+    public void test12(){
+        //自动装配测试
+        Emp cv = context6.getBean("emp",Emp.class);
+        System.out.println(cv);
+    }
 }
