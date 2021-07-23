@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="userService" class="service.UserService">
+        <!--注入userDao对象,ref内写其它Bean的id值-->
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+    <!--不能写接口路径，需要写接口对应实现类的路径-->
+    <bean id="userDao" class="dao.UserDaoImpi"></bean>
+</beans>

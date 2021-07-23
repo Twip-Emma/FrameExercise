@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <util:list id="bookList">
+<!--        <value>高等数学</value>-->
+<!--        <value>大学语文</value>-->
+<!--        <value>线性代数</value>-->
+        <ref bean="book1"></ref>
+        <ref bean="book2"></ref>
+    </util:list>
+    <bean id="utilList" class="container.BookStore">
+        <property name="store" ref="bookList"></property>
+    </bean>
+    <bean id="book1" class="container.BookInfo">
+        <property name="bookName" value="三国演义"></property>
+        <property name="bookPrice" value="20"></property>
+    </bean>
+    <bean id="book2" class="container.BookInfo">
+        <property name="bookName" value="水浒传"></property>
+        <property name="bookPrice" value="30"></property>
+    </bean>
+</beans>
