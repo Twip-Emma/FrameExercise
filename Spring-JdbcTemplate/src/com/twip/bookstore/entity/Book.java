@@ -28,4 +28,13 @@ public class Book {
     public int getBook_price() {
         return book_price;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "book_id='" + book_id + '\'' +
+                ", book_name='" + book_name + '\'' +
+                ", book_price=" + book_price +
+                '}';
+    }
 }
