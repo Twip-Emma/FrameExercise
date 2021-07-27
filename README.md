@@ -122,7 +122,7 @@ public class TxConfig {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql:///mydatabase");
         dataSource.setUsername("root");
-        dataSource.setPassword("82991400");
+        dataSource.setPassword("123");
         return dataSource;
     }
 
