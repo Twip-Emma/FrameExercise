@@ -6,7 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: \027MyWifec:\Users\七画一只妖\IdeaProjects\笔记本.md
 -->
-# WebExercise学习笔记
+# 学习笔记
 
 ## 记录一些可能会忘记的东西
 
