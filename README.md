@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-23 10:48:07
- * @LastEditTime: 2021-07-26 11:31:13
+ * @LastEditTime: 2021-07-27 10:58:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \027MyWifec:\Users\七画一只妖\IdeaProjects\笔记本.md
@@ -95,4 +95,132 @@
     <!--开启事务注解-->
     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 </beans>
+~~~
+
+### MyBatis初始化maven
+~~~xml
+<dependencies>
+        <!--mybatis-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+        <!--数据库 mysql 驱动-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.47</version>
+        </dependency>
+        <!--junit 测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.ibatis/ibatis-core -->
+        <dependency>
+            <groupId>org.apache.ibatis</groupId>
+            <artifactId>ibatis-core</artifactId>
+            <version>3.0</version>
+        </dependency>
+    </dependencies>
+~~~
+
+### MyBatis全局变量设置
+~~~xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+<!--                jdbc:mysql://localhost:3306-->
+                <property name="url" value="jdbc:mysql://localhost:3306/mydatabase"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+<!--填写已写好的sql映射文件-->
+    <mappers>
+        <mapper resource="mapper.xml"/>
+    </mappers>
+</configuration>
+~~~
+
+### MyBatis映射文件mapper.xml
+~~~xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--名称空间-->
+<mapper namespace="com.twip.mybatis.entity.EmployeeMapper">
+<!--resultType返回值类型-->
+<!--#{id}从传递过来的参数中取出id值-->
+    <select id="selectEmp" resultType="com.twip.mybatis.entity.Employee">
+        select id,last_name lastName,gender,email from tb1_employee where id = #{id}
+    </select>
+</mapper>
+~~~
+
+### MyBatis第一步HelloWorld
+~~~Java
+package com.twip.mybatis.utils;
+
+import com.twip.mybatis.entity.Employee;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class MyBatisUtils {
+    @Test
+    public void test() throws IOException {
+        String resource = "config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取sqlSession实例，能够直接执行已经映射的sql语句
+        SqlSession openSession = sqlSessionFactory.openSession();
+        try{
+            Object[] arg1 = {1};
+            Employee employee = openSession.selectOne("com.twip.mybatis.entity.EmployeeMapper.selectEmp", 1);
+            System.out.println(employee);
+        }finally {
+            openSession.close();
+        }
+    }
+}
+~~~
+
+### maven静态资源过滤
+~~~xml
+<resources>
+   <resource>
+       <directory>src/main/java</directory>
+       <includes>
+           <include>**/*.properties</include>
+           <include>**/*.xml</include>
+       </includes>
+       <filtering>false</filtering>
+   </resource>
+   <resource>
+       <directory>src/main/resources</directory>
+       <includes>
+           <include>**/*.properties</include>
+           <include>**/*.xml</include>
+       </includes>
+       <filtering>false</filtering>
+   </resource>
+</resources>
 ~~~
