@@ -14,7 +14,12 @@ public class AdminService {
 
     //服务层-书籍添加
     public void insertBook(Book book){
-        adminDao.insertBook(book);
+        Boolean re = adminDao.insertBook(book);
+        if(re){
+            System.out.println("这是一本新的书，已自动添加");
+        }else{
+            System.out.println("仓库已存在这本书，已自动总数+1");
+        }
     }
 
     //服务层-书籍删除
