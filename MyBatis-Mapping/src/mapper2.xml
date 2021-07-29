@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--名称空间-->
+<!--直接与接口进行绑定的命名空间-->
+<mapper namespace="com.twip.mybatis.dao.EmployeeMapper">
+    <!--resultType返回值类型-->
+    <!--#{id}从传递过来的参数中取出id值-->
+
+    <!--将select标签的id改为接口内方法的名称进行绑定-->
+    <select id="getEmpById" resultType="com.twip.mybatis.entity.Employee">
+        select id,last_name lastName,gender,email from tb1_employee where id = #{id}
+    </select>
+</mapper>
