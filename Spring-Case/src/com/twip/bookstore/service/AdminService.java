@@ -24,11 +24,21 @@ public class AdminService {
 
     //服务层-书籍删除
     public void deleteBook(Book book){
-        adminDao.deleteBook(book);
+        Boolean re = adminDao.deleteBook(book);
+        if(re){
+            System.out.println("已经成功删除这本书");
+        }else{
+            System.out.println("找不到这本书，已自动退出");
+        }
     }
 
     //服务层-书籍批量添加
-    public void insertBookBatch(Book book,int amount){
-        adminDao.insertBookBatch(book,amount);
+    public void insertBookBatch(Book book){
+        Boolean re = adminDao.insertBookBatch(book);
+        if(re){
+            System.out.println("成功批量添加了" + book.getBookAmount() + "本《" + book.getBookName() + "》");
+        }else{
+            System.out.println("找不到这本书，已自动退出");
+        }
     }
 }
