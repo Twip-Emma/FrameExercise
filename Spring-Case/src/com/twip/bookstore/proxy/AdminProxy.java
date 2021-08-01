@@ -30,7 +30,7 @@ public class AdminProxy {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    @Before(value = "bean(adminService) && args(book)", argNames="book")
+    @Before(value = "bean(adminService) && args(book) && execution(* com.twip.bookstore.service.AdminService.insertBook(..))", argNames="book")
     public void adminUpdateDatabaseBefore(Book book){
         System.out.println("欢迎您，管理员");
         String sql = "select * from book_store_ware where book_name=?";
@@ -43,6 +43,34 @@ public class AdminProxy {
         } catch (Exception e) {
             book.setBookFlag(false);
             System.out.println("这是一本新书");
+        }
+    }
+
+    @Before(value = "bean(adminService) && args(book) && execution(* com.twip.bookstore.service.AdminService.deleteBook(..))", argNames="book")
+    public void adminDeleteDatabaseBefore(Book book){
+        System.out.println("欢迎您，管理员");
+        String sql = "select * from book_store_ware where book_name=?";
+        try {
+            Book re = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class), book.getBookName());
+            book.setBookFlag(true);
+            System.out.println("代理类：成功找到了这本书");
+        } catch (Exception e) {
+            book.setBookFlag(false);
+            System.out.println("代理类：找不到这本书");
+        }
+    }
+
+    @Before(value = "bean(adminService) && args(book) && execution(* com.twip.bookstore.service.AdminService.insertBookBatch(..))", argNames="book")
+    public void adminUpdateInsertBatchBefore(Book book){
+        System.out.println("欢迎您，管理员");
+        String sql = "select * from book_store_ware where book_name=?";
+        try {
+            Book re = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class), book.getBookName());
+            book.setBookFlag(true);
+            System.out.println("代理类：成功找到了这本书");
+        } catch (Exception e) {
+            book.setBookFlag(false);
+            System.out.println("代理类：找不到这本书");
         }
     }
 }
