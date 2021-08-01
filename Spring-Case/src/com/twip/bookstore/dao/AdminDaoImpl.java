@@ -14,10 +14,10 @@ public class AdminDaoImpl implements AdminDao {
     //添加书
     @Override
     public Boolean insertBook(Book book) {
-        Boolean re = bookCheck(book);
-        if (!re) {
+        boolean re = book.isBookFlag();
+        if(re){
             return false;
-        } else {
+        }else{
             String sql = "insert into book_store_ware values(?,?,?,?)";
             Object[] args = {null, book.getBookName(), book.getBookPrice(), 1};
             jdbcTemplate.update(sql, args);
@@ -46,16 +46,16 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     //操作前判断
-    private Boolean bookCheck(Book book) {
-        String sql = "select * from book_store_ware where book_name=?";
-        try {
-            Book re = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class), book.getBookName());
-            String sql2 = "update book_store_ware set book_amount=book_amount+1 where book_name=?";
-            Object[] args = {book.getBookName()};
-            jdbcTemplate.update(sql2, args);
-            return false;
-        } catch (Exception e) {
-            return true;
-        }
-    }
+//    private Boolean bookCheck(Book book) {
+//        String sql = "select * from book_store_ware where book_name=?";
+//        try {
+//            Book re = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class), book.getBookName());
+//            String sql2 = "update book_store_ware set book_amount=book_amount+1 where book_name=?";
+//            Object[] args = {book.getBookName()};
+//            jdbcTemplate.update(sql2, args);
+//            return false;
+//        } catch (Exception e) {
+//            return true;
+//        }
+//    }
 }
