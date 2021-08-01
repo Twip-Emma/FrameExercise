@@ -46,8 +46,27 @@ public class Start {
     public void text4(){
         AdminService adminService = context.getBean("adminService",AdminService.class);
         Book book = context.getBean("book", Book.class);
-        book.setBookName("画镜魔法指南入门");
-        book.setBookPrice(35);
+        book.setBookName("空域旅游导航指南");
+        book.setBookPrice(50);
         adminService.insertBook(book);
+    }
+
+    //删除书本测试
+    @Test
+    public void text5(){
+        AdminService adminService = context.getBean("adminService",AdminService.class);
+        Book book = context.getBean("book", Book.class);
+        book.setBookName("高维魔法入门");
+        adminService.deleteBook(book);
+    }
+
+    //批量添加书本测试
+    @Test
+    public void text6(){
+        AdminService adminService = context.getBean("adminService",AdminService.class);
+        Book book = context.getBean("book", Book.class);
+        book.setBookName("画镜魔法指南入门");
+        book.setBookAmount(20);
+        adminService.insertBookBatch(book);
     }
 }
