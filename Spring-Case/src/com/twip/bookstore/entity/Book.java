@@ -14,6 +14,7 @@ public class Book {
     private String bookName;
     private int bookPrice;
     private int bookAmount;
+    private boolean bookFlag;
 
     public int getBookId() {
         return bookId;
@@ -45,6 +46,14 @@ public class Book {
 
     public void setBookAmount(int bookAmount) {
         this.bookAmount = bookAmount;
+    }
+
+    public boolean isBookFlag() {
+        return bookFlag;
+    }
+
+    public void setBookFlag(boolean bookFlag) {
+        this.bookFlag = bookFlag;
     }
 
     @Override
