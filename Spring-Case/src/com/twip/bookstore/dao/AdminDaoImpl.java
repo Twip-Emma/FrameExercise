@@ -14,7 +14,7 @@ public class AdminDaoImpl implements AdminDao {
     //添加书
     @Override
     public Boolean insertBook(Book book) {
-        boolean re = book.isBookFlag();
+        boolean re = (Boolean) book.isBookFlag();
         if(re){
             return false;
         }else{
@@ -28,7 +28,7 @@ public class AdminDaoImpl implements AdminDao {
     //删除书
     @Override
     public Boolean deleteBook(Book book) {
-        boolean re = book.isBookFlag();
+        boolean re = (Boolean) book.isBookFlag();
         if(!re){
             return false;
         }else{
@@ -43,7 +43,7 @@ public class AdminDaoImpl implements AdminDao {
     //批量添加相同书
     @Override
     public Boolean insertBookBatch(Book book) {
-        boolean re = book.isBookFlag();
+        boolean re = (Boolean) book.isBookFlag();
         if(!re){
             return false;
         }else{
