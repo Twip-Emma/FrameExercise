@@ -1,9 +1,10 @@
 package com.twip.bookstore.entity;
 
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Book {
+public class Book<E> {
 //create table book_store_ware(
 //	book_id int(20) primary key auto_increment,
 //	book_name varchar(255),
@@ -14,7 +15,7 @@ public class Book {
     private String bookName;
     private int bookPrice;
     private int bookAmount;
-    private boolean bookFlag;
+    private E bookFlag;
 
     public int getBookId() {
         return bookId;
@@ -48,11 +49,11 @@ public class Book {
         this.bookAmount = bookAmount;
     }
 
-    public boolean isBookFlag() {
+    public E isBookFlag() {
         return bookFlag;
     }
 
-    public void setBookFlag(boolean bookFlag) {
+    public void setBookFlag(E bookFlag) {
         this.bookFlag = bookFlag;
     }
 
@@ -63,6 +64,7 @@ public class Book {
                 ", bookName='" + bookName + '\'' +
                 ", bookPrice=" + bookPrice +
                 ", bookAmount=" + bookAmount +
+                ", bookFlag=" + bookFlag +
                 '}';
     }
 }
