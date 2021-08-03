@@ -64,6 +64,23 @@
         </dependency>
 ~~~
 
+### 代理类传参
+~~~java
+@Before(value = "bean(adminService) && args(book) && execution(* com.twip.bookstore.service.AdminService.insertBookBatch(..))", argNames="book")
+    public void adminUpdateInsertBatchBefore(Book book){
+        System.out.println("欢迎您，管理员");
+        String sql = "select * from book_store_ware where book_name=?";
+        try {
+            Book re = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class), book.getBookName());
+            book.setBookFlag(true);
+            System.out.println("代理类：成功找到了这本书");
+        } catch (Exception e) {
+            book.setBookFlag(false);
+            System.out.println("代理类：找不到这本书");
+        }
+    }
+~~~
+
 ### 德鲁伊连接池xml
 ~~~xml
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
