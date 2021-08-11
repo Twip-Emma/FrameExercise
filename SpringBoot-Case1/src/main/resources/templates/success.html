@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>这是success界面</h1>
+<!--<hr/>-->
+<!--<h4 th:text="${item}" th:each="item:${books}"></h4>-->
+<!--<hr/>-->
+<!--<h4>-->
+<!--  <span th:each="item:${books}">[[${item}]]</span>-->
+<!--</h4>-->
+<h1>成功了！</h1>
+<div th:text="${books}">[显示欢迎信息]</div>
+<hr/>
+<div th:text="${books}"></div>
+<hr/>
+<div th:utext="${books}"></div>
+<hr/>
+</body>
+</html>

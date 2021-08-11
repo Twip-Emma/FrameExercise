@@ -1,0 +1,9 @@
+#spring:
+#  datasource:
+#    username:root
+#    password:82991400
+#    url: jdbc:mysql://localhost:3306/mydatabase
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  mvc:
+#    async:
+#      request-timeout: 5000
