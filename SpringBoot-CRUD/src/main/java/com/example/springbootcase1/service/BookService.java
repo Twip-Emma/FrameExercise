@@ -12,7 +12,17 @@ public class BookService {
     @Autowired
     private BookModel bookModel;
 
-    public List<Book> findAll(){
-        return bookModel.findAll();
+    public String findAll(){
+        List<Book> bookList = bookModel.findAll();
+        String msg = "";
+        for(Book o:bookList){
+            msg = msg + "<p>书本ID" + o.getBookId() + "||《" + o.getBookName() + "》" + "价格" + o.getBookPrice();
+            msg += "元||（剩余" + o.getBookAmount() + "本）</p>";
+        }
+        return msg;
+    }
+
+    public void insertNewBook(Book book){
+        bookModel.insertNewBook(book);
     }
 }
