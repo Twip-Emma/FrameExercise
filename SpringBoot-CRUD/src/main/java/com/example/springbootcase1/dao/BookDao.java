@@ -1,10 +1,7 @@
 package com.example.springbootcase1.dao;
 
 import com.example.springbootcase1.entity.Book;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,5 +16,13 @@ public interface BookDao {
                     @Result(column = "book_amount",property = "bookAmount"),
             })
     List<Book> findAll();
+
+
+    @Insert("insert into " +
+            "book_store_ware(book_id,book_name,book_price,book_amount)" +
+            "value(#{bookId},#{bookName},#{bookPrice},#{bookAmount})")
+    void insertNewBook(Book book);
+//    @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
+
 
 }
