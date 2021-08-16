@@ -16,4 +16,8 @@ public class BookModel {
     public List<Book> findAll() {
         return bookDao.findAll();
     }
+
+    public void insertNewBook(Book book){
+        bookDao.insertNewBook(book);
+    }
 }
