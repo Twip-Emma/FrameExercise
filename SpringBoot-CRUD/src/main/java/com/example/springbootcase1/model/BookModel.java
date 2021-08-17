@@ -20,4 +20,8 @@ public class BookModel {
     public void insertNewBook(Book book){
         bookDao.insertNewBook(book);
     }
+
+    public Boolean deleteBook(String id){return bookDao.deleteBook(id);}
+
+    public Boolean moreBook(String bookName,Integer bookAmount){return bookDao.moreBook(bookName,bookAmount);}
 }
