@@ -22,4 +22,18 @@ public class UserService {
         msg += "</table>";
         return msg;
     }
+
+    public Boolean findUserPass(String userAccount,String userPass){
+        User re = userModel.findUserPass(userAccount);
+        if(re!=null) {
+            String pass = re.getUserPassword();
+            if (!userPass.equals(pass)) {
+                return false;
+            } else {
+                return true;
+            }
+        }else {
+            return false;
+        }
+    }
 }
