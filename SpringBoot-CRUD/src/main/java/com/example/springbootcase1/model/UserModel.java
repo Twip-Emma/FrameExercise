@@ -15,4 +15,8 @@ public class UserModel {
     public List<User> findAll(){
         return userDao.findAll();
     }
+
+    public User findUserPass(String userAccount){
+        return userDao.findUserPass(userAccount);
+    }
 }
