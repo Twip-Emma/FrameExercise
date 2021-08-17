@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:utext="${users}">[user未能成功显示]</div>
+    <a href="#" th:href="@{/users}">刷新</a>
+    <p style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+<div>
+    <form action="/insertNewBook" method="post">
+        <p>输入要加入的书籍的信息</p>
+        书名<input type="text" name="bookName"/>
+        价格<input type="text" name="bookPrice"/>
+        本数<input type="text" name="bookAmount"/>
+        <input type="submit">
+    </form>
+</div>
+<br/>
+<div>
+    <form action="/deleteBook" method="post">
+        <p>输入要删除的书籍的ID</p>
+        ID:<input type="text" name="bookId"/>
+        <input type="submit">
+    </form>
+</div>
+</body>
+</html>
