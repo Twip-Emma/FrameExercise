@@ -46,12 +46,32 @@ public class UserController {
         book.setBookName(bookName);
         book.setBookPrice(bookPrice);
         book.setBookAmount(bookAmount);
-        bookService.insertNewBook(book);
+        Boolean re = bookService.insertNewBook(book);
+        if(re){
+            model.addAttribute("msg","插入成功，请刷新页面");
+        }else{
+            model.addAttribute("msg","插入失败，出现了未知错误");
+        }
 
         String userList = bookService.findAll();
         //放在请求域中
         model.addAttribute("users",userList);
-        model.addAttribute("msg","插入成功，请刷新页面");
+
+        return "user/list";
+    }
+
+    @PostMapping("/deleteBook")
+    public String insertNewBook(
+            @RequestParam("bookId") String bookId,
+            Model model){
+        Boolean re = bookService.deleteBook(bookId);
+        if(re){
+            model.addAttribute("msg","删除成功，请刷新页面");
+        }else{
+            model.addAttribute("msg","删除失败，未找到你要删除的书目ID");
+        }
+        String userList = bookService.findAll();
+        model.addAttribute("users",userList);
         return "user/list";
     }
 
