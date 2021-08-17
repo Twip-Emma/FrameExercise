@@ -2,10 +2,7 @@ package com.example.springbootcase1.dao;
 
 import com.example.springbootcase1.entity.Book;
 import com.example.springbootcase1.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -22,4 +19,8 @@ public interface UserDao {
                     @Result(column = "user_balance",property = "userBalance"),
             })
     List<User> findAll();
+
+    @ResultMap(value = "userMap")
+    @Select("select * from book_store_user where user_account=#{userAccount2}")
+    User findUserPass(String userAccount2);
 }
