@@ -284,7 +284,7 @@ public class MyBatisUtils {
    </resource>
    <resource>
        <directory>src/main/resources</directory>
-       <includes>
+       <includes> 
            <include>**/*.properties</include>
            <include>**/*.xml</include>
        </includes>
