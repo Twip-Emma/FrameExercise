@@ -288,7 +288,7 @@ public class MyBatisUtils {
            <include>**/*.properties</include>
            <include>**/*.xml</include>
        </includes>
-       <filtering>false</filtering> 
+       <filtering>false</filtering>  
    </resource>
 </resources>
 ~~~
