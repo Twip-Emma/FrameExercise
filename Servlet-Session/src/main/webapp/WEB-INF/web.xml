@@ -1,0 +1,40 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>LastAccessServlet</servlet-name>
+    <servlet-class>myServlet.LastAccessServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ListBookServlet</servlet-name>
+    <servlet-class>myServlet.ListBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>PurchaseServlet</servlet-name>
+    <servlet-class>myServlet.PurchaseServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>myServlet.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LastAccessServlet</servlet-name>
+    <url-pattern>/LastAccessServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListBookServlet</servlet-name>
+    <url-pattern>/ListBookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <!--PurchaseServlet?id=1-->
+    <servlet-name>PurchaseServlet</servlet-name>
+    <url-pattern>/PurchaseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/CartServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
