@@ -10,6 +10,15 @@
 
 ## 记录一些可能会忘记的东西
 
+### 引入spring（不使用spring installer）
+~~~xml
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.0.6.RELEASE</version>
+    </dependency>
+~~~
+
 ### aop管理引入的maven配置
 ~~~xml
         <dependency>
