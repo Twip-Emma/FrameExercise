@@ -20,7 +20,7 @@ public class UserService {
             userListByHtml += "</td><td>" + user.getUserCard() + "</td><td>" + user.getUserPass();
             userListByHtml += "</td><td>" + user.getUserName() + "</td><td>" + user.getUserExp() + "</td></tr>";
         }
-        if(userListByHtml != null || userListByHtml != ""){
+        if(userListByHtml.equals("")){
             return userListByHtml;
         }else{
             return "没有用户";
