@@ -2,7 +2,6 @@ package com.example.springbootcasechat.service;
 
 import com.example.springbootcasechat.dao.ChatDao;
 import com.example.springbootcasechat.entity.Chat;
-import com.example.springbootcasechat.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ public class ChatService {
                 chatListByHtml += "</td></tr>";
             }
         }
-        if(chatListByHtml != null || chatListByHtml != ""){
+        if(chatListByHtml.equals("")){
             return chatListByHtml;
         }else{
             return "暂无聊天记录";
