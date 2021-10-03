@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>这是注册界面</h1>
+<form th:action="@{/register/userTryRegister}" method="post">
+  <p style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+  <table border="1" width="600px" cellpadding="0" cellspacing="0" align="center">
+    <tr>
+      <td height="30" align="center">通行证：</td>
+      <th>&nbsp;<input type="text" name="card" />作为你登录的唯一标识</th>
+    </tr>
+    <tr>
+      <td height="30" align="center">密&nbsp;码：</td>
+      <th>&nbsp;<input type="text" name="password" />保护你的通行证</th>
+    </tr>
+    <tr>
+      <td height="30" align="center">用户名：</td>
+      <th>&nbsp;<input type="text" name="username" />取一个响亮的昵称吧~</th>
+    </tr>
+    <tr>
+      <td height="30" colspan="2" align="center">
+        <input type="submit" value="注册" />
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="reset" value="重置">
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
