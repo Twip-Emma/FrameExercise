@@ -26,4 +26,13 @@ public class UserService {
             return "没有用户";
         }
     }
+
+    public String findUserName(String userCard){
+        String userName = userDao.findUser(userCard).getUserName();
+        return userName;
+    }
+
+    public void changeUserName(String userCard,String userName){
+        userDao.changeUserName(userName,userCard);
+    }
 }

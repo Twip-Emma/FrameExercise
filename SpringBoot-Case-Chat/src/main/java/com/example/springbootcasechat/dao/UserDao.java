@@ -25,4 +25,8 @@ public interface UserDao {
     @ResultMap(value = "findUser")
     @Select("select * from user where user_card=#{userCard}")
     User findUser(String userCard);
+
+    @ResultMap(value = "findUser")
+    @Update("update user set user_name=#{userName} where user_card=#{userCard}")
+    void changeUserName(String userName,String userCard);
 }
