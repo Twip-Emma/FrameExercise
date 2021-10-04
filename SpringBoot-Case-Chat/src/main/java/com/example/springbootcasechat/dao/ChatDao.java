@@ -1,10 +1,7 @@
 package com.example.springbootcasechat.dao;
 
 import com.example.springbootcasechat.entity.Chat;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,4 +17,8 @@ public interface ChatDao {
                     @Result(column = "admin_type",property = "adminType")
             })
     List<Chat> findAllChat();
+
+    @ResultMap(value = "findChat")
+    @Insert("insert into chat values(#{chatId},#{chatTime},#{chatUser},#{chatText},#{adminType})")
+    void newChat(String chatId,String chatTime,String chatUser,String chatText,String adminType);
 }

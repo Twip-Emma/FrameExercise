@@ -4,7 +4,11 @@ import com.example.springbootcasechat.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/chat")
@@ -21,5 +25,13 @@ public class ChatController {
         String htmlFinal = HTML_HEADER + allChat + HTML_TAIL;
         model.addAttribute("chatMsg",htmlFinal);
         return "chat";
+    }
+
+    @PostMapping("/send")
+    public String userSend(@RequestParam("chattext")String chatText,
+                           HttpSession session,
+                           Model model){
+        chatService.newChat(chatText,session);
+        return "redirect:/chat/goToChat";
     }
 }

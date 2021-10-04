@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>这是聊天室</h1>
+<a th:href="@{/user/logout}" th:action="@{/user/logout}">退出当前账号</a>
+<a th:href="@{/user/goToUser}" th:action="@{/user/goToUser}">用户中心</a>
 <div th:utext="${chatMsg}">[聊天记录未能成功显示]</div>
+<form th:action="@{/chat/send}" method="post">
+    <input name="chattext" type="text">
+    <input type="submit" value="发送">
+</form>
 </body>
 </html>
