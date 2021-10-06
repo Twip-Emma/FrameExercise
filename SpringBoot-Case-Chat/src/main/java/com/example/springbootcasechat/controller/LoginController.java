@@ -2,15 +2,21 @@ package com.example.springbootcasechat.controller;
 
 import com.example.springbootcasechat.entity.User;
 import com.example.springbootcasechat.service.LoginService;
+import com.example.springbootcasechat.service.ToolService;
 import com.example.springbootcasechat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +29,9 @@ public class LoginController {
     UserService userService;
 
     @Autowired
+    ToolService toolService;
+
+    @Autowired
     User user;
 
     @RequestMapping("/")
@@ -33,12 +42,24 @@ public class LoginController {
     @PostMapping("/userTryLogin")
     public String userLogin(@RequestParam("card")String userCard,
                             @RequestParam("password")String userPass,
-                            HttpSession session, Model model){
+                            @RequestParam("check")String userCheck,
+                            HttpServletRequest request,
+                            HttpServletResponse response,
+                            HttpSession session, Model model)throws IOException, ServletException{
         session.setAttribute("userCard",userCard);
         session.setAttribute("userPass",userPass);
 
         user.setUserCard(userCard);
         user.setUserPass(userPass);
+        toolService.getImage(request, response);
+        //先判断验证码
+        String savedCode = (String) request.getSession().getAttribute("check_code");
+        if(!userCheck.equals(savedCode)){
+            model.addAttribute("msg","验证码错误，请重新输入！");
+            return "index";
+        }
+
+        //再判断用户名是否匹配
         if(loginService.loginCheck(user)){
             return "redirect:/chat/goToChat";
         }else{
@@ -73,5 +94,12 @@ public class LoginController {
     @RequestMapping("/returnChatPage")
     public String returnChatPage(){
         return "redirect:/chat/goToChat";
+    }
+
+    @RequestMapping("/check")
+    public void showCheckImage(HttpServletRequest request,
+                                 HttpServletResponse response
+                                 )throws IOException, ServletException {
+        toolService.getImage(request, response);
     }
 }
