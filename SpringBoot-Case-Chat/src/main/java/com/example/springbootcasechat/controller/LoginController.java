@@ -35,7 +35,7 @@ public class LoginController {
     User user;
 
     @RequestMapping("/")
-    public String hello(Model model){
+    public String hello(){
         return "index";
     }
 
@@ -43,17 +43,14 @@ public class LoginController {
     public String userLogin(@RequestParam("card")String userCard,
                             @RequestParam("password")String userPass,
                             @RequestParam("check")String userCheck,
-                            HttpServletRequest request,
-                            HttpServletResponse response,
-                            HttpSession session, Model model)throws IOException, ServletException{
+                            HttpSession session, Model model){
         session.setAttribute("userCard",userCard);
         session.setAttribute("userPass",userPass);
 
         user.setUserCard(userCard);
         user.setUserPass(userPass);
-        toolService.getImage(request, response);
-        //先判断验证码
-        String savedCode = (String) request.getSession().getAttribute("check_code");
+
+        String savedCode =(String) session.getAttribute("check_code");
         if(!userCheck.equals(savedCode)){
             model.addAttribute("msg","验证码错误，请重新输入！");
             return "index";
