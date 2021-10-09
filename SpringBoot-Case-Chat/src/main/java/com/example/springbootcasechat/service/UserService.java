@@ -12,27 +12,34 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
-    public String findAllUser(){
+    public String findAllUser() {
         String userListByHtml = "";
         List<User> userList = userDao.findAllUser();
-        for(User user : userList){
+        for (User user : userList) {
             userListByHtml += "<tr><td>" + user.getUserId() + "</td><td>" + user.getUserName();
             userListByHtml += "</td><td>" + user.getUserCard() + "</td><td>" + user.getUserPass();
             userListByHtml += "</td><td>" + user.getUserName() + "</td><td>" + user.getUserExp() + "</td></tr>";
         }
-        if(userListByHtml.equals("")){
+        if (userListByHtml.equals("")) {
             return userListByHtml;
-        }else{
+        } else {
             return "没有用户";
         }
     }
 
-    public String findUserName(String userCard){
-        String userName = userDao.findUser(userCard).getUserName();
-        return userName;
+    public String findUserName(String userCard) {
+        return userDao.findUser(userCard).getUserName();
     }
 
-    public void changeUserName(String userCard,String userName){
-        userDao.changeUserName(userName,userCard);
+    public User findUser(String userCard) {
+        return userDao.findUser(userCard);
+    }
+
+    public void changeUserName(String userCard, String userName) {
+        userDao.changeUserName(userName, userCard);
+    }
+
+    public void userGetExp(String userCard) {
+        userDao.userGetExp(userCard);
     }
 }
