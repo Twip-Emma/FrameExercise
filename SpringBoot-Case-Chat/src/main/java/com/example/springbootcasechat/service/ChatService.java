@@ -41,5 +41,6 @@ public class ChatService {
         String userCard = (String) session.getAttribute("userCard");
         String chatId = nowTime + userCard;
         chatDao.newChat(chatId,nowTime,userCard,chatText,"pass");
+        userService.userGetExp(userCard);
     }
 }
