@@ -13,6 +13,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Object userCard = request.getSession().getAttribute("userCard");
         if(userCard == null){
+            System.out.println("拦截器被触发了！！");
             request.setAttribute("msg","你的通行证失效，请重新登录！");
             request.getRequestDispatcher("/user/").forward(request,response);
             return false;

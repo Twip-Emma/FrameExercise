@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FrameExercise.iml" filepath="$PROJECT_DIR$/.idea/FrameExercise.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringBoot-Case-Chat/SpringBoot-Case-Chat.iml" filepath="$PROJECT_DIR$/SpringBoot-Case-Chat/SpringBoot-Case-Chat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-Case-Vue/SpringBoot-Case-Vue.iml" filepath="$PROJECT_DIR$/SpringBoot-Case-Vue/SpringBoot-Case-Vue.iml" />
     </modules>
   </component>
 </project>
