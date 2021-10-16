@@ -15,11 +15,11 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/user/check","/user/userTryLogin","/user/","/","/register/","/register/**");
+//        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/test2","/testPost","/user/check","/user/userTryLogin","/user/","/","/register/","/register/**");
     }
 
     @Override
     protected void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
+//        registry.addViewController("/").setViewName("index");
     }
 }
