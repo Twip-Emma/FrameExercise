@@ -5,11 +5,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RestController
 public class GetInfoController {
     @GetMapping("/testPost")
-    public String getDataFromVue(HttpServletRequest request, HttpServletResponse response, @RequestParam("userData")String userData){
+    public String getDataFromVue(HttpServletRequest request, HttpServletResponse response, @RequestParam("userData")String userData)
+        throws IOException
+    {
         response.setHeader("Access-Control-Allow-Origin",request.getHeader("Origin"));
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
@@ -17,7 +20,7 @@ public class GetInfoController {
         response.addHeader("Access-Control-Max-Age", "120");
         System.out.println(userData);
         System.out.println("成功1");
-        String msg = "{name:张三,age:10,school:湖南工程学院}";
+        String msg = "{\"name\":\"张三\"}";
         return msg;
     }
 
