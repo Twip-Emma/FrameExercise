@@ -37,10 +37,15 @@ public class ChatService {
     }
 
     public void newChat(String chatText, HttpSession session){
+        Date data1 = new Date();
         String nowTime = new Date().toString();
         String userCard = (String) session.getAttribute("userCard");
         String chatId = nowTime + userCard;
-        chatDao.newChat(chatId,nowTime,userCard,chatText,"pass");
-        userService.userGetExp(userCard);
+//        for(int i = 0;i < 10000;i++) {
+            chatDao.newChat(chatId, nowTime, userCard, chatText, "pass");
+            userService.userGetExp(userCard);
+//        }
+        Date data2 = new Date();
+        System.out.printf("耗时%d毫秒",data2.getTime()-data1.getTime());
     }
 }

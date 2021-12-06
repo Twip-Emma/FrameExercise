@@ -4,6 +4,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(value = {"com.example"})
 public class TxConfig {
 }
+@ComponentScan(value = {"com.example"})

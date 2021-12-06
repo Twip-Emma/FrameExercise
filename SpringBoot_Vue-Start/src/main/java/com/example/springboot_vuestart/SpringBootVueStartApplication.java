@@ -1,11 +1,13 @@
-package com.example.springbootcasevue;
+package com.example.springboot_vuestart;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootCaseVueApplication {
+public class SpringBootVueStartApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootCaseVueApplication.class, args);
+        SpringApplication.run(SpringBootVueStartApplication.class, args);
     }
+
 }

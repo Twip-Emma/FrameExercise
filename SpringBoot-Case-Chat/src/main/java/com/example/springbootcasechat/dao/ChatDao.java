@@ -10,7 +10,7 @@ public interface ChatDao {
     @Select("select * from chat")
     @Results(id = "findChat",
             value = {
-                    @Result(id = true,column = "chat_id",property = "chatId"),
+                    @Result(column = "chat_id",property = "chatId"),
                     @Result(column = "chat_time",property = "chatTime"),
                     @Result(column = "chat_user",property = "chatUser"),
                     @Result(column = "chat_text",property = "chatText"),

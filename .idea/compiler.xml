@@ -7,14 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="SpringBoot-Case-Chat" />
         <module name="SpringBoot_Vue-Start" />
         <module name="SpringBoot-Case-Vue" />
-        <module name="SpringBoot-Case-Chat" />
+        <module name="SpringBoot-Exercise-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="SpringBoot-Case-Chat" target="11" />
       <module name="SpringBoot-Case-Vue" target="11" />
+      <module name="SpringBoot-Exercise-test" target="11" />
       <module name="SpringBoot_Vue-Start" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -22,6 +24,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="SpringBoot-Case-Chat" options="-parameters" />
       <module name="SpringBoot-Case-Vue" options="-parameters" />
+      <module name="SpringBoot-Exercise-test" options="-parameters" />
       <module name="SpringBoot_Vue-Start" options="-parameters" />
     </option>
   </component>
