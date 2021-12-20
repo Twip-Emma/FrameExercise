@@ -12,11 +12,14 @@ import java.util.List;
 
 @Component
 public class ChatService {
-    @Autowired
     ChatDao chatDao;
+    UserService userService;
 
     @Autowired
-    UserService userService;
+    public ChatService(ChatDao chatDao, UserService userService) {
+        this.chatDao = chatDao;
+        this.userService = userService;
+    }
 
     public String findAllChat(){
         String chatListByHtml = "";

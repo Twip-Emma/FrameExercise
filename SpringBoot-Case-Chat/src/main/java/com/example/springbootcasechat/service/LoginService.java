@@ -7,8 +7,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LoginService {
+    private final UserDao userDao;
+
     @Autowired
-    UserDao userDao;
+    public LoginService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     public Boolean loginCheck(User user){
         User _user = userDao.findUser(user.getUserCard());

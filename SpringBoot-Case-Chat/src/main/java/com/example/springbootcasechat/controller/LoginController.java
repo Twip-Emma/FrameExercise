@@ -21,18 +21,18 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/user")
 public class LoginController {
+    private final LoginService loginService;
+    private final UserService userService;
+    private final ToolService toolService;
+    private final User user;
 
     @Autowired
-    LoginService loginService;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    ToolService toolService;
-
-    @Autowired
-    User user;
+    public LoginController(LoginService loginService, UserService userService, ToolService toolService, User user) {
+        this.loginService = loginService;
+        this.userService = userService;
+        this.toolService = toolService;
+        this.user = user;
+    }
 
     @RequestMapping("/")
     public String hello() {

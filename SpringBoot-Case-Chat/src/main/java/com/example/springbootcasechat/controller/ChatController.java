@@ -15,9 +15,12 @@ import javax.servlet.http.HttpSession;
 public class ChatController {
     private String HTML_HEADER="<table><tr><th>发言人</th><th>发言时间</th><th>内容</th>";
     private String HTML_TAIL="</tr></table>";
+    private final ChatService chatService;
 
     @Autowired
-    ChatService chatService;
+    public ChatController(ChatService chatService) {
+        this.chatService = chatService;
+    }
 
     @RequestMapping("/goToChat")
     public String startChat(Model model){
