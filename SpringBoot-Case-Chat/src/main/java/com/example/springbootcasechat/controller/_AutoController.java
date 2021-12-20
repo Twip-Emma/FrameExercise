@@ -13,6 +13,6 @@ public class _AutoController {
 
     @RequestMapping(value = "/")
     public String start(){
-        return "index";
+        return "redirect:/user/";
     }
 }

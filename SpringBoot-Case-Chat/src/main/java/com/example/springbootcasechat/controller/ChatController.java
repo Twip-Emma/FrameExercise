@@ -23,9 +23,11 @@ public class ChatController {
     }
 
     @RequestMapping("/goToChat")
-    public String startChat(Model model){
+    public String startChat(Model model,HttpSession session){
         String allChat = chatService.findAllChat();
         String htmlFinal = HTML_HEADER + allChat + HTML_TAIL;
+        Integer startChatHead = chatService.getStartChatHead();
+        session.setAttribute("ChatHead",startChatHead);
         model.addAttribute("chatMsg",htmlFinal);
         return "chat";
     }
@@ -36,5 +38,46 @@ public class ChatController {
                            Model model){
         chatService.newChat(chatText,session);
         return "redirect:/chat/goToChat";
+    }
+
+    @RequestMapping("/goChatUp")
+    public String goChatUp(HttpSession session,Model model){
+        Integer chatHead = (Integer) session.getAttribute("ChatHead");
+        chatHead -= 1;
+        if(chatHead <= -1){
+            model.addAttribute("chatLimitMsg","没有更早的消息了");
+            session.setAttribute("ChatHead",chatHead + 1);
+            String allChat = chatService.findLimitChat(session);
+            String htmlFinal = HTML_HEADER + allChat + HTML_TAIL;
+            model.addAttribute("chatMsg",htmlFinal);
+            return "chat";
+        }else{
+            session.setAttribute("ChatHead",chatHead);
+            String allChat = chatService.findLimitChat(session);
+            String htmlFinal = HTML_HEADER + allChat + HTML_TAIL;
+            model.addAttribute("chatMsg",htmlFinal);
+            return "chat";
+        }
+    }
+
+    @RequestMapping("/goChatDown")
+    public String goChatDown(HttpSession session,Model model){
+        Integer chatHead = (Integer) session.getAttribute("ChatHead");
+        chatHead += 1;
+        if(chatHead + 20 > chatService.getStartChatHead() + 20){
+            model.addAttribute("chatLimitMsg","没有再新的消息了");
+            String allChat = chatService.findAllChat();
+            String htmlFinal = HTML_HEADER + allChat + HTML_TAIL;
+            Integer startChatHead = chatService.getStartChatHead();
+            session.setAttribute("ChatHead",startChatHead);
+            model.addAttribute("chatMsg",htmlFinal);
+        }else{
+            session.setAttribute("ChatHead",chatHead);
+            String allChat = chatService.findLimitChat(session);
+            String htmlFinal = HTML_HEADER + allChat + HTML_TAIL;
+            model.addAttribute("chatMsg",htmlFinal);
+            return "chat";
+        }
+        return "chat";
     }
 }

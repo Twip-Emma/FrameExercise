@@ -8,6 +8,9 @@
 <h1>这是聊天室</h1>
 <a th:href="@{/user/logout}" th:action="@{/user/logout}">退出当前账号</a>
 <a th:href="@{/user/goToUser}" th:action="@{/user/goToUser}">用户中心</a>
+<a th:href="@{/chat/goChatUp}" th:action="@{/user/goToUser}">往上翻翻</a>
+<a th:href="@{/chat/goChatDown}" th:action="@{/user/goToUser}">往下翻翻</a>
+<p style="color:red" th:text="${chatLimitMsg}" th:if="${not #strings.isEmpty(chatLimitMsg)}"></p>
 <div th:utext="${chatMsg}">[聊天记录未能成功显示]</div>
 <form th:action="@{/chat/send}" method="post">
     <input name="chattext" type="text">

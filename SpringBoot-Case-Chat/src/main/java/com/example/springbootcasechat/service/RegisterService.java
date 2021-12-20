@@ -3,6 +3,7 @@ package com.example.springbootcasechat.service;
 import com.example.springbootcasechat.dao.UserDao;
 import com.example.springbootcasechat.entity.User;
 import com.example.springbootcasechat.tool.GetUUID;
+import com.example.springbootcasechat.tool.MyPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +13,13 @@ import java.util.Date;
 public class RegisterService {
     private final UserDao userDao;
     private final GetUUID getUUID;
+    private final MyPasswordEncoder myPasswordEncoder;
 
     @Autowired
-    public RegisterService(UserDao userDao,GetUUID getUUID) {
+    public RegisterService(UserDao userDao,GetUUID getUUID,MyPasswordEncoder myPasswordEncoder) {
         this.userDao = userDao;
         this.getUUID = getUUID;
+        this.myPasswordEncoder = myPasswordEncoder;
     }
 
     public Boolean creatNewUser(User user){
@@ -26,7 +29,8 @@ public class RegisterService {
             String nowTime = new Date().toString();
             user.setUserId(nowTime + user.getUserCard());
             String uuid = getUUID.getUserUUID();
-            userDao.creatNewUser(uuid, user.getUserCard(), user.getUserPass(), user.getUserName());
+            String encodePass = myPasswordEncoder.getEncodePass(user.getUserPass());
+            userDao.creatNewUser(uuid, user.getUserCard(), encodePass, user.getUserName());
             return true;
         }
     }

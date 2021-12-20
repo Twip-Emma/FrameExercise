@@ -23,7 +23,7 @@ public class TestVueGetDataController {
     }
 
     @PostMapping("/test2")
-    public String getDataFromVue2(HttpServletRequest request, HttpServletResponse response,@RequestBody String userData){
+    public String getDataFromVue2(@RequestBody String userData){
 //        response.setHeader("Access-Control-Allow-Origin","*");
 //        response.setHeader("Access-Control-Allow-Credentials", "true");
 //        response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");

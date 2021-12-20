@@ -1,6 +1,7 @@
 package com.example.springbootcasechat.dao;
 
 import com.example.springbootcasechat.entity.Chat;
+import com.example.springbootcasechat.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -21,4 +22,12 @@ public interface ChatDao {
     @ResultMap(value = "findChat")
     @Insert("insert into chat values(#{chatId},#{chatTime},#{chatUser},#{chatText},#{adminType})")
     void newChat(String chatId,String chatTime,String chatUser,String chatText,String adminType);
+
+    @ResultMap(value = "findChat")
+    @Select("select count(*) from chat")
+    Integer getChatTotal();
+
+    @ResultMap(value = "findChat")
+    @Select("select * from chat limit #{a},#{b};")
+    List<Chat> findLimitChat(Integer a,Integer b);
 }
