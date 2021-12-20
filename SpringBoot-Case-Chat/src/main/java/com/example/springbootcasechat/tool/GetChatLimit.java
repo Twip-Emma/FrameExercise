@@ -23,21 +23,24 @@ public class GetChatLimit {
     }
 
     //如果聊天记录大于20，则只取后20行的记录
-    public List<Chat> getChatTail(){
-        Integer listTotal = getListTotal();
+    public List<Chat> getChatTail(HttpSession session){
+        Integer listTotal = getListTotal(session);
         int i = listTotal - 20;
-        List<Chat> limitChat = chatDao.findLimitChat(i, 20);
+        String roomId = (String) session.getAttribute("roomid");
+        List<Chat> limitChat = chatDao.findLimitChat(i, 20,roomId);
         return limitChat;
     }
 
-    public Integer getListTotal(){
-        List<Chat> allChat = chatDao.findAllChat();
+    public Integer getListTotal(HttpSession session){
+        String roomId = (String) session.getAttribute("roomid");
+        List<Chat> allChat = chatDao.findAllChat(roomId);
         return allChat.size();
     }
 
     public List<Chat> getChatTarget(HttpSession session){
         int i = (Integer) session.getAttribute("ChatHead");
-        List<Chat> limitChat = chatDao.findLimitChat(i, 20);
+        String roomId = (String) session.getAttribute("roomid");
+        List<Chat> limitChat = chatDao.findLimitChat(i, 20,roomId);
         return limitChat;
     }
 }

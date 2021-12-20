@@ -1,6 +1,7 @@
 package com.example.springbootcasechat.controller;
 
 import com.example.springbootcasechat.service.ChatService;
+import com.example.springbootcasechat.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,19 +17,30 @@ public class ChatController {
     private String HTML_HEADER="<table><tr><th>发言人</th><th>发言时间</th><th>内容</th>";
     private String HTML_TAIL="</tr></table>";
     private final ChatService chatService;
+    private final RoomService roomService;
 
     @Autowired
-    public ChatController(ChatService chatService) {
+    public ChatController(ChatService chatService,RoomService roomService) {
         this.chatService = chatService;
+        this.roomService = roomService;
     }
 
     @RequestMapping("/goToChat")
     public String startChat(Model model,HttpSession session){
-        String allChat = chatService.findAllChat();
+        String allChat = chatService.findAllChat(session);
         String htmlFinal = HTML_HEADER + allChat + HTML_TAIL;
-        Integer startChatHead = chatService.getStartChatHead();
+        Integer startChatHead = chatService.getStartChatHead(session);
         session.setAttribute("ChatHead",startChatHead);
         model.addAttribute("chatMsg",htmlFinal);
+
+        //获取房间名称
+        String roomid = (String) session.getAttribute("roomid");
+        if(roomid.equals("公共频道")){
+            model.addAttribute("roomid","公共频道");
+        }else{
+            String roomName = roomService.findRoomNameById(roomid);
+            model.addAttribute("roomid",roomName);
+        }
         return "chat";
     }
 
@@ -64,11 +76,11 @@ public class ChatController {
     public String goChatDown(HttpSession session,Model model){
         Integer chatHead = (Integer) session.getAttribute("ChatHead");
         chatHead += 1;
-        if(chatHead + 20 > chatService.getStartChatHead() + 20){
+        if(chatHead + 20 > chatService.getStartChatHead(session) + 20){
             model.addAttribute("chatLimitMsg","没有再新的消息了");
-            String allChat = chatService.findAllChat();
+            String allChat = chatService.findAllChat(session);
             String htmlFinal = HTML_HEADER + allChat + HTML_TAIL;
-            Integer startChatHead = chatService.getStartChatHead();
+            Integer startChatHead = chatService.getStartChatHead(session);
             session.setAttribute("ChatHead",startChatHead);
             model.addAttribute("chatMsg",htmlFinal);
         }else{

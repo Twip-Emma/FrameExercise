@@ -95,6 +95,7 @@ public class LoginController {
         response.addCookie(card);
         response.addCookie(pwd);
 
+        session.setAttribute("roomid","公共频道");
         session.setAttribute("userCard", userCard);
         session.setAttribute("userPass", userPass);
 

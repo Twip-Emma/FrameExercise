@@ -28,12 +28,13 @@ public class ChatService {
         this.getChatLimit = getChatLimit;
     }
 
-    public String findAllChat(){
+    public String findAllChat(HttpSession session){
         String chatListByHtml = "";
         List<Chat> chatList = null;
-        chatList = chatDao.findAllChat();
+        String roomid = (String) session.getAttribute("roomid");
+        chatList = chatDao.findAllChat(roomid);
         if(chatList.size() > 20){
-            chatList = getChatLimit.getChatTail();
+            chatList = getChatLimit.getChatTail(session);
         }
         return getString(chatListByHtml, chatList);
     }
@@ -41,15 +42,17 @@ public class ChatService {
     public void newChat(String chatText, HttpSession session){
         String nowTime = new Date().toString();
         String userCard = (String) session.getAttribute("userCard");
+        String roomId = (String) session.getAttribute("roomid");
         String uuid = getUUID.getChatUUID();
-        chatDao.newChat(uuid, nowTime, userCard, chatText, "pass");
+        chatDao.newChat(uuid, nowTime, userCard, chatText, "pass",roomId);
             userService.userGetExp(userCard);
     }
 
     public String findLimitChat(HttpSession session){
         String chatListByHtml = "";
         List<Chat> chatList = null;
-        chatList = chatDao.findAllChat();
+        String roomId = (String) session.getAttribute("roomid");
+        chatList = chatDao.findAllChat(roomId);
         Integer chatHead = (Integer)session.getAttribute("ChatHead");
         if(chatList.size() + 20 >= chatHead){
             chatList = getChatLimit.getChatTarget(session);
@@ -74,8 +77,9 @@ public class ChatService {
         }
     }
 
-    public Integer getStartChatHead(){
-        List<Chat> allChat = chatDao.findAllChat();
+    public Integer getStartChatHead(HttpSession session){
+        String roomId = (String) session.getAttribute("roomid");
+        List<Chat> allChat = chatDao.findAllChat(roomId);
         int size = allChat.size();
         int i = size;
         if(size >= 20){
