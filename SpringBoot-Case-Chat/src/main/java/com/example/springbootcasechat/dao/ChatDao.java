@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface ChatDao {
-    @Select("select * from chat")
+    @Select("select * from chat order by chat_time asc")
     @Results(id = "findChat",
             value = {
                     @Result(column = "chat_id",property = "chatId"),
@@ -28,6 +28,6 @@ public interface ChatDao {
     Integer getChatTotal();
 
     @ResultMap(value = "findChat")
-    @Select("select * from chat limit #{a},#{b};")
+    @Select("select * from chat order by chat_time asc limit #{a},#{b};")
     List<Chat> findLimitChat(Integer a,Integer b);
 }
