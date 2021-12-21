@@ -13,13 +13,21 @@ public class GetUUID {
     public String getUserUUID() {
         UUID uuid = UUID.randomUUID();
         String str = uuid.toString();
-        String uuidStr = str.replace("-", "+userid+");
+        String uuidStr = str.replace("-", "userid");
         return uuidStr;
     }
+
     public String getChatUUID(){
         UUID uuid = UUID.randomUUID();
         String str = uuid.toString();
-        String uuidStr = str.replace("-", "+chat+");
+        String uuidStr = str.replace("-", "chat");
         return uuidStr;
     }
+    public String getRoomUUID(){
+        UUID uuid = UUID.randomUUID();
+        String str = uuid.toString();
+        String uuidStr = str.replace("-", "room");
+        return uuidStr;
+    }
+
 }

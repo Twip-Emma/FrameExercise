@@ -25,4 +25,9 @@ public interface RoomDao {
     @ResultMap(value = "findRoom")
     @Select("select * from room where room_id=#{id};")
     Room findRoomNameById(String id);
+
+    //创建新房间
+    @ResultMap(value = "findRoom")
+    @Select("insert into room values(#{roomId},#{roomName},#{userId});")
+    void creatNewRoom(String roomId,String roomName,String userId);
 }
