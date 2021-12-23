@@ -42,9 +42,6 @@ public class LoginController {
         Cookie[] cookies = request.getCookies();
         String card = null;
         String pass = null;
-
-
-
         if(cookies != null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().compareTo("usercard") == 0){
