@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>选择你要加入的聊天室</h1>
+<a th:href="@{/user/returnChatPage}" th:action="@{/user/returnChatPage}">返回聊天室</a>
+<div th:utext="${roomlist}" th:if="${not #strings.isEmpty(roomlist)}">[未能正常显示]</div>
+</body>
+</html>

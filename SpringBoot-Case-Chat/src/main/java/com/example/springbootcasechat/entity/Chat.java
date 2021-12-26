@@ -9,4 +9,5 @@ public class Chat {
     private String chatUser;
     private String chatText;
     private String adminType;
+    private String roomId;
 }

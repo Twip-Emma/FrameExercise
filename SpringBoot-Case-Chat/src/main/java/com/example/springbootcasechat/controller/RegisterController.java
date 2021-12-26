@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
-    @Autowired
-    User user;
+    private final User user;
+    private final RegisterService registerService;
 
     @Autowired
-    RegisterService registerService;
+    public RegisterController(User user, RegisterService registerService) {
+        this.user = user;
+        this.registerService = registerService;
+    }
 
     @RequestMapping("/")
     public String startRegister(){
