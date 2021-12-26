@@ -2,8 +2,8 @@ package com.example.springbootcasechat.service;
 
 import com.example.springbootcasechat.dao.UserDao;
 import com.example.springbootcasechat.entity.User;
-import com.example.springbootcasechat.tool.GetUUID;
-import com.example.springbootcasechat.tool.MyPasswordEncoder;
+import com.example.springbootcasechat.utils.GetUUID;
+import com.example.springbootcasechat.utils.MyPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

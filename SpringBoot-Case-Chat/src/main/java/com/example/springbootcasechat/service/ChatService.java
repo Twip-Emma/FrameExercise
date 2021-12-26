@@ -2,14 +2,12 @@ package com.example.springbootcasechat.service;
 
 import com.example.springbootcasechat.dao.ChatDao;
 import com.example.springbootcasechat.entity.Chat;
-import com.example.springbootcasechat.entity.User;
-import com.example.springbootcasechat.tool.GetChatLimit;
-import com.example.springbootcasechat.tool.GetUUID;
+import com.example.springbootcasechat.utils.GetChatLimit;
+import com.example.springbootcasechat.utils.GetUUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
-import java.lang.annotation.Target;
 import java.util.Date;
 import java.util.List;
 

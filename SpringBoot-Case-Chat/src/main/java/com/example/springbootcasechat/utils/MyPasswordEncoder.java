@@ -1,4 +1,4 @@
-package com.example.springbootcasechat.tool;
+package com.example.springbootcasechat.utils;
 
 import com.example.springbootcasechat.dao.UserDao;
 import com.example.springbootcasechat.entity.User;

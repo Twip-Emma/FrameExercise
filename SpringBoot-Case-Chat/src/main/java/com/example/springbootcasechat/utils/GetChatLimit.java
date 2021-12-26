@@ -1,8 +1,7 @@
-package com.example.springbootcasechat.tool;
+package com.example.springbootcasechat.utils;
 
 import com.example.springbootcasechat.dao.ChatDao;
 import com.example.springbootcasechat.entity.Chat;
-import com.example.springbootcasechat.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

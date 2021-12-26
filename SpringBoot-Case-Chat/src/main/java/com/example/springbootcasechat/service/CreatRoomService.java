@@ -2,12 +2,9 @@ package com.example.springbootcasechat.service;
 
 import com.example.springbootcasechat.dao.RoomDao;
 import com.example.springbootcasechat.dao.UserDao;
-import com.example.springbootcasechat.entity.Room;
 import com.example.springbootcasechat.entity.User;
-import com.example.springbootcasechat.tool.GetUUID;
+import com.example.springbootcasechat.utils.GetUUID;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * @Author: 七画一只妖
