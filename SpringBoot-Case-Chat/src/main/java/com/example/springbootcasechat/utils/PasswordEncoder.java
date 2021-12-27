@@ -9,11 +9,12 @@ import org.springframework.util.DigestUtils;
  */
 @Component
 public class PasswordEncoder {
-    //使用codec加密
+    //传入明文-加密
     public String encode(CharSequence rawPassword) {
         return DigestUtils.md5DigestAsHex(rawPassword.toString().getBytes());
     }
 
+    //传入明文和密文-判断是否对应
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         return encodedPassword.equals(DigestUtils.md5DigestAsHex(rawPassword.toString().getBytes()));
     }
